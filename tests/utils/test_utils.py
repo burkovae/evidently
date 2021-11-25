@@ -28,3 +28,11 @@ class TestNumpyEncoder(unittest.TestCase):
 
     def test_array_covert(self):
         self.assertEqual(self.encoder.default(np.array([0, 1, 2.1])), [0, 1, 2.1])
+        self.assertEqual(self.encoder.default(np.empty((0,0))), [])
+        self.assertEqual(self.encoder.default(
+            np.array([[0, 1, 2.1], [0, 1, 2.1], [0, 1, 2.1]])),
+            [[0, 1, 2.1], [0, 1, 2.1], [0, 1, 2.1]])
+        self.assertEqual(self.encoder.default(np.ones((2, 3))), [[1.0, 1.0, 1.0], [1.0, 1.0, 1.0]])
+
+    def test_none_covert(self):
+        self.assertIsNone(self.encoder.default(np.void(3)))
