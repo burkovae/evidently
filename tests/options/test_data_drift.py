@@ -36,10 +36,6 @@ def _custom_stattest():
     pass
 
 
-def _another_stattest():
-    pass
-
-
 @pytest.mark.parametrize("feature_func,expected", [
     (None, {"feature1": _default_stattest, "feature2": _default_stattest}),
     ({"feature1": _custom_stattest}, {"feature1": _custom_stattest, "feature2": _default_stattest}),
